@@ -1,4 +1,4 @@
-module githib.com/topaz-authz/merge-json
+module github.com/topaz-authz/merge-json
 
 go 1.25.6
 
