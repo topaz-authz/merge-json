@@ -1,32 +1,25 @@
-# If you prefer the allow list template instead of the deny list, see community template:
-# https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore
-#
-# Binaries for programs and plugins
-*.exe
-*.exe~
-*.dll
-*.so
-*.dylib
-
 # Test binary, built with `go test -c`
 *.test
 
-# Code coverage profiles and other test artifacts
+# Output of the go coverage tool, specifically when used with LiteIDE
 *.out
-coverage.*
-*.coverprofile
-profile.cov
 
 # Dependency directories (remove the comment below to include it)
-# vendor/
+/.dev/
+/.ext/
+/dist/
 
-# Go workspace file
-go.work
+# misc
+.DS_Store
+
+# env setting
+.env
+.vscode/launch.json
+
+# https://github.com/golang/go/issues/53502
+# go.work.sum is machine specific and should not be checked in
 go.work.sum
 
-# env file
-.env
-
-# Editor/IDE
-# .idea/
-# .vscode/
+# LLM agent configs
+AGENTS.md
+CLAUDE.md
