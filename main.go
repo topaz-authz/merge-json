@@ -20,7 +20,7 @@ func main() {
 	fmt.Println("output:", *output)
 
 	if err := merge(flag.Args(), *output); err != nil {
-		fmt.Printf("error: %s", err.Error())
+		fmt.Printf("error: %s\n", err.Error())
 		os.Exit(1)
 	}
 
@@ -35,7 +35,7 @@ func merge(files []string, outfile string) error {
 	)
 
 	for _, file := range files {
-		fmt.Printf("<= %s", file)
+		fmt.Printf("<= %s\n", file)
 
 		src, err = loadFile(file)
 		if err != nil {
@@ -57,7 +57,7 @@ func merge(files []string, outfile string) error {
 	enc.SetIndent("", "  ")
 	enc.SetEscapeHTML(true)
 
-	fmt.Printf("=> %s", outfile)
+	fmt.Printf("=> %s\n", outfile)
 
 	err = enc.Encode(dst)
 
