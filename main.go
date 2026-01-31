@@ -5,9 +5,9 @@ import (
 	"flag"
 	"fmt"
 	"os"
-	"strings"
 
 	"dario.cat/mergo"
+	"github.com/samber/lo"
 )
 
 func main() {
@@ -17,7 +17,11 @@ func main() {
 
 	flag.Parse()
 
-	fmt.Println("inputs:", strings.Join(flag.Args(), "\n"))
+	fmt.Println("inputs:")
+	lo.ForEach(flag.Args(), func(x string, _ int) {
+		fmt.Printf("=> %s\n", x)
+	})
+
 	fmt.Println("output:", *output)
 
 	if err := merge(flag.Args(), *output); err != nil {
