@@ -11,18 +11,18 @@ import (
 )
 
 func main() {
-	fmt.Println("merge-json")
+	fmt.Printf("merge-json\n")
 
 	output := flag.String("output", "", "output filename")
 
 	flag.Parse()
 
-	fmt.Println("inputs:")
+	fmt.Printf("inputs:\n")
 	lo.ForEach(flag.Args(), func(x string, _ int) {
 		fmt.Printf("=> %s\n", x)
 	})
 
-	fmt.Println("output:", *output)
+	fmt.Printf("output: %s\n", *output)
 
 	if err := merge(flag.Args(), *output); err != nil {
 		fmt.Printf("error: %s\n", err.Error())
