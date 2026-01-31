@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"strings"
 
 	"dario.cat/mergo"
 )
@@ -16,7 +17,7 @@ func main() {
 
 	flag.Parse()
 
-	fmt.Println("inputs:", flag.Args())
+	fmt.Println("inputs:", strings.Join(flag.Args(), "\n"))
 	fmt.Println("output:", *output)
 
 	if err := merge(flag.Args(), *output); err != nil {

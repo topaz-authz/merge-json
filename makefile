@@ -69,6 +69,15 @@ test: gover
 	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
 	@${EXT_BIN_DIR}/gotestsum --format short-verbose -- ./... -count=1 -timeout 120s -parallel=1 -v -coverprofile=cover.out -coverpkg=./...
 
+.PHONY: tag
+tag:
+	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
+	@-git push --delete origin latest
+	@-git tag -d latest
+	@git tag $$(svu patch)
+	@git tag latest
+	@git push --tags
+
 .PHONY: info
 info:
 	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
