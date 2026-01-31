@@ -7,7 +7,6 @@ import (
 	"os"
 
 	"dario.cat/mergo"
-	"github.com/samber/lo"
 )
 
 func main() {
@@ -17,17 +16,12 @@ func main() {
 
 	flag.Parse()
 
-	fmt.Printf("inputs:\n")
-	lo.ForEach(flag.Args(), func(x string, _ int) {
-		fmt.Printf("=> %s\n", x)
-	})
-
-	fmt.Printf("output: %s\n", *output)
-
 	if err := merge(flag.Args(), *output); err != nil {
 		fmt.Printf("error: %s\n", err.Error())
 		os.Exit(1)
 	}
+
+	fmt.Println()
 
 	os.Exit(0)
 }
@@ -64,9 +58,11 @@ func merge(files []string, outfile string) error {
 
 	fmt.Printf("=> %s\n", outfile)
 
-	err = enc.Encode(dst)
+	if err := enc.Encode(dst); err != nil {
+		return err
+	}
 
-	return err
+	return nil
 }
 
 func loadFile(filePath string) (map[string]any, error) {
